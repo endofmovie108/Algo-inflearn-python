@@ -8,19 +8,20 @@
 import sys
 sys.stdin=open('input.txt', 'rt')
 N = int(input())
-tps = [list(map(int, input().split())) for _ in range(N)]
+tps = [list(map(int, input().split())) for _ in range(N)] # index: 0 ~ N-1
 
 def DFS(st_t, sum_p):
     global N, max_money
+    if st_t <= N+1 and sum_p > max_money:
+        max_money = sum_p
     if st_t >= N+1:
-        if sum_p > max_money:
-            max_money = sum_p
         return
+
     # st_t 부터 탐색
     for t_idx in range(st_t, N):
         # 상담을 처리
         # 다음번의 st_t는 해당 상담을 처리하기 위해 필요한 기간을 더해줘야한다. (그리고, +1일)
-        DFS(st_t + tps[t_idx][0]+1, sum_p + tps[t_idx][1])
+        DFS(st_t + tps[t_idx][0], sum_p + tps[t_idx][1])
 
         # 상담을 미처리
         # 이 다음번의 상담을 탐색하기 위해 st_t에 +1을 해줌.
