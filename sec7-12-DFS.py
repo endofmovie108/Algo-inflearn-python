@@ -29,7 +29,7 @@ for r_idx in range(N):
     for c_idx in range(N):
         if maps[r_idx][c_idx] == 1:
             danji += 1
-            aptnum = 0
+            aptnum = 1
             DFS(r_idx, c_idx)
             aptnums.append(aptnum)
 
